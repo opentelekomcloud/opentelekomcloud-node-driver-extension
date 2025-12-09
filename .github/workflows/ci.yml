@@ -30,7 +30,7 @@ jobs:
           yarn lint
 
 
-  eco_check:
+  check:
     name: eco/check
     if: always()
     needs: [lint]
