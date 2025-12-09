@@ -81,20 +81,20 @@ export default {
 
 <template>
   <button
-      ref="btn"
-      class="btn role-primary"
-      :disabled="disabled"
-      :tab-index="tabIndex"
-      :data-testid="componentTestid + '-async-button'"
-      @click="clicked"
+    ref="btn"
+    class="btn role-primary"
+    :disabled="disabled"
+    :tab-index="tabIndex"
+    :data-testid="componentTestid + '-async-button'"
+    @click="clicked"
   >
     <i
-        v-if="busy"
-        class="icon icon-lg icon-spinner icon-spin"
+      v-if="busy"
+      class="icon icon-lg icon-spinner icon-spin"
     />
     <span
-        v-else
-        class="icon-spacer"
+      v-else
+      class="icon-spacer"
     />
     <span>{{ displayLabel }}</span>
     <span class="icon-spacer" />

@@ -1,14 +1,14 @@
 <script>
 import Loading from '@shell/components/Loading';
-import {Banner} from '@components/Banner';
+import { Banner } from '@components/Banner';
 import CreateEditView from '@shell/mixins/create-edit-view';
 import LabeledSelect from '@shell/components/form/LabeledSelect';
-import {LabeledInput} from '@components/Form/LabeledInput';
-import {NORMAN, SECRET} from '@shell/config/types';
-import {stringify} from '@shell/utils/error';
-import {_VIEW} from '@shell/config/query-params';
+import { LabeledInput } from '@components/Form/LabeledInput';
+import { NORMAN, SECRET } from '@shell/config/types';
+import { stringify } from '@shell/utils/error';
+import { _VIEW } from '@shell/config/query-params';
 import FileSelector from '../components/FileSelector';
-import {OpenTelekomCloud} from '../opentelekomcloud.ts';
+import { OpenTelekomCloud } from '../opentelekomcloud.ts';
 
 function initOptions() {
   return {
@@ -78,6 +78,7 @@ export default {
 
     // Populate basic auth fields from the cloud credential config (without password)
     const credCfg = this.credential?.opentelekomcloudcredentialConfig || {};
+
     this.username = credCfg.username || '';
     this.domainName = credCfg.domainName || '';
     this.projectName = credCfg.projectName || '';
@@ -109,20 +110,18 @@ export default {
     this.authenticating = true;
 
     const otc = new OpenTelekomCloud(this.$store, {
-      endpoint:   this.endpoint,
-      domainName: this.domainName,
-      username:   this.username,
-      password:   this.password,
+      endpoint:    this.endpoint,
+      domainName:  this.domainName,
+      username:    this.username,
+      password:    this.password,
       projectName: this.projectName,
-      region:     this.region,
+      region:      this.region,
     });
 
     this.otc = otc;
 
     // Fetch a token - if this succeeds, kick off async fetching the lists we need
     this.otc.getToken().then((res) => {
-      console.log('[OTC] getToken result:', res);
-
       if (res.error) {
         this.authenticating = false;
         this.$emit('validationChanged', false);
@@ -133,8 +132,6 @@ export default {
       }
 
       this.authenticating = false;
-
-      console.log('[OTC] Before getFlavors, endpoints:', this.otc); // важно: посмотреть this.otc.endpoints
 
       otc.getFlavors(this.flavors, this.value?.flavorName);
       otc.getImages(this.images, this.value?.imageName);
@@ -280,17 +277,17 @@ export default {
 <template>
   <div>
     <Loading
-        v-if="$fetchState.pending"
-        :delayed="true"
+      v-if="$fetchState.pending"
+      :delayed="true"
     />
     <div v-if="errors.length">
       <div
-          v-for="(err, idx) in errors"
-          :key="idx"
+        v-for="(err, idx) in errors"
+        :key="idx"
       >
         <Banner
-            color="error"
-            :label="stringify(err)"
+          color="error"
+          :label="stringify(err)"
         />
       </div>
     </div>
@@ -300,8 +297,8 @@ export default {
           OpenTelekomCloud Configuration
         </div>
         <div
-            v-if="authenticating"
-            class="loading"
+          v-if="authenticating"
+          class="loading"
         >
           <i class="icon-spinner icon-spin icon-lg" />
           <span>
@@ -312,55 +309,55 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledSelect
-              v-model:value="flavors.selected"
-              label="Flavor"
-              :options="flavors.options"
-              :disabled="!flavors.enabled || busy"
-              :loading="flavors.busy"
-              :searchable="false"
+            v-model:value="flavors.selected"
+            label="Flavor"
+            :options="flavors.options"
+            :disabled="!flavors.enabled || busy"
+            :loading="flavors.busy"
+            :searchable="false"
           />
         </div>
 
         <div class="col span-6">
           <LabeledSelect
-              v-model:value="images.selected"
-              label="Image"
-              :options="images.options"
-              :disabled="!images.enabled || busy"
-              :loading="images.busy"
-              :searchable="false"
+            v-model:value="images.selected"
+            label="Image"
+            :options="images.options"
+            :disabled="!images.enabled || busy"
+            :loading="images.busy"
+            :searchable="false"
           />
         </div>
       </div>
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledSelect
-              v-model:value="keyPairs.selected"
-              label="Key Pair"
-              :options="keyPairs.options"
-              :disabled="!keyPairs.enabled || busy"
-              :loading="keyPairs.busy"
-              :searchable="false"
+            v-model:value="keyPairs.selected"
+            label="Key Pair"
+            :options="keyPairs.options"
+            :disabled="!keyPairs.enabled || busy"
+            :loading="keyPairs.busy"
+            :searchable="false"
           />
         </div>
         <div class="col span-6">
           <LabeledInput
-              v-model:value="filename"
-              label="Private Key"
-              :mode="mode"
-              :type="privateKeyFieldType"
-              :disabled="busy"
-              :required="true"
+            v-model:value="filename"
+            label="Private Key"
+            :mode="mode"
+            :type="privateKeyFieldType"
+            :disabled="busy"
+            :required="true"
           >
             <template v-slot:suffix>
               <div class="file-button">
                 <FileSelector
-                    label="..."
-                    :mode="mode"
-                    :include-file="true"
-                    :disabled="busy"
-                    class="btn-sm"
-                    @selected="onPrivateKeyFileSelected"
+                  label="..."
+                  :mode="mode"
+                  :include-file="true"
+                  :disabled="busy"
+                  class="btn-sm"
+                  @selected="onPrivateKeyFileSelected"
                 />
               </div>
             </template>
@@ -370,69 +367,69 @@ export default {
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledSelect
-              v-model:value="securityGroups.selected"
-              label="Security Groups"
-              :options="securityGroups.options"
-              :disabled="!securityGroups.enabled || busy"
-              :loading="securityGroups.busy"
-              :searchable="false"
+            v-model:value="securityGroups.selected"
+            label="Security Groups"
+            :options="securityGroups.options"
+            :disabled="!securityGroups.enabled || busy"
+            :loading="securityGroups.busy"
+            :searchable="false"
           />
         </div>
       </div>
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledSelect
-              v-model:value="availabilityZones.selected"
-              label="Availability Zone"
-              :options="availabilityZones.options"
-              :disabled="!availabilityZones.enabled || busy"
-              :loading="availabilityZones.busy"
-              :searchable="false"
+            v-model:value="availabilityZones.selected"
+            label="Availability Zone"
+            :options="availabilityZones.options"
+            :disabled="!availabilityZones.enabled || busy"
+            :loading="availabilityZones.busy"
+            :searchable="false"
           />
         </div>
       </div>
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledSelect
-              v-model:value="floatingIpPools.selected"
-              label="Floating IP Pools"
-              :options="floatingIpPools.options"
-              :disabled="!floatingIpPools.enabled || busy"
-              :loading="floatingIpPools.busy"
-              :searchable="false"
+            v-model:value="floatingIpPools.selected"
+            label="Floating IP Pools"
+            :options="floatingIpPools.options"
+            :disabled="!floatingIpPools.enabled || busy"
+            :loading="floatingIpPools.busy"
+            :searchable="false"
           />
         </div>
       </div>
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledSelect
-              v-model:value="vpcs.selected"
-              label="VPCs"
-              :options="vpcs.options"
-              :disabled="!vpcs.enabled || busy"
-              :loading="vpcs.busy"
-              :searchable="false"
+            v-model:value="vpcs.selected"
+            label="VPCs"
+            :options="vpcs.options"
+            :disabled="!vpcs.enabled || busy"
+            :loading="vpcs.busy"
+            :searchable="false"
           />
         </div>
         <div class="col span-6">
           <LabeledSelect
-              v-model:value="subnets.selected"
-              label="Subnets"
-              :options="subnets.options"
-              :disabled="!subnets.enabled || busy"
-              :loading="subnets.busy"
-              :searchable="false"
+            v-model:value="subnets.selected"
+            label="Subnets"
+            :options="subnets.options"
+            :disabled="!subnets.enabled || busy"
+            :loading="subnets.busy"
+            :searchable="false"
           />
         </div>
       </div>
       <div class="row mt-10">
         <div class="col span-6">
           <LabeledInput
-              v-model:value="sshUser"
-              :mode="mode"
-              :disabled="busy"
-              :required="true"
-              label="SSH User ID"
+            v-model:value="sshUser"
+            :mode="mode"
+            :disabled="busy"
+            :required="true"
+            label="SSH User ID"
           />
         </div>
       </div>

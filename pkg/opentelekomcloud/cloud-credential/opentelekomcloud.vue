@@ -17,13 +17,13 @@ export default {
 
   props: {
     mode: {
-      type: String,
+      type:     String,
       required: true,
     },
 
     // Rancher Cloud Credential model
     value: {
-      type: Object,
+      type:     Object,
       required: true,
     },
   },
@@ -43,11 +43,11 @@ export default {
     if (this.mode !== _CREATE && this.value.annotations) {
       const ann = this.value.annotations;
 
-      decoded.username          = ann['opentelekomcloud.cattle.io/username'] || decoded.username;
-      decoded.domainName        = ann['opentelekomcloud.cattle.io/domainName'] || decoded.domainName;
-      decoded.region            = ann['opentelekomcloud.cattle.io/region'] || decoded.region;
-      decoded.authUrl           = ann['opentelekomcloud.cattle.io/authUrl'] || decoded.authUrl;
-      decoded.projectName       = ann['opentelekomcloud.cattle.io/projectName'] || decoded.projectName;
+      decoded.username = ann['opentelekomcloud.cattle.io/username'] || decoded.username;
+      decoded.domainName = ann['opentelekomcloud.cattle.io/domainName'] || decoded.domainName;
+      decoded.region = ann['opentelekomcloud.cattle.io/region'] || decoded.region;
+      decoded.authUrl = ann['opentelekomcloud.cattle.io/authUrl'] || decoded.authUrl;
+      decoded.projectName = ann['opentelekomcloud.cattle.io/projectName'] || decoded.projectName;
     }
 
     // Default region if nothing is set yet
@@ -93,8 +93,8 @@ export default {
     // Static OTC regions – region is required
     regionOptions() {
       const regions = [
-        { id: 'eu-de',  name: 'eu-de (Germany)' },
-        { id: 'eu-nl',  name: 'eu-nl (Netherlands)' },
+        { id: 'eu-de', name: 'eu-de (Germany)' },
+        { id: 'eu-nl', name: 'eu-nl (Netherlands)' },
         { id: 'eu-ch2', name: 'eu-ch2 (Switzerland)' },
       ];
 
@@ -123,6 +123,7 @@ export default {
   watch: {
     region(newVal) {
       const url = this.authUrlForRegion(newVal);
+
       this.value.setData('region', newVal || '');
       this.value.setData('authUrl', url || '');
       this.value.decodedData.region = newVal;
@@ -168,11 +169,11 @@ export default {
 
       const decoded = this.value.decodedData;
 
-      this.value.annotations['opentelekomcloud.cattle.io/username']          = decoded.username;
-      this.value.annotations['opentelekomcloud.cattle.io/domainName']        = decoded.domainName;
-      this.value.annotations['opentelekomcloud.cattle.io/password']          = decoded.password;
-      this.value.annotations['opentelekomcloud.cattle.io/region']            = decoded.region;
-      this.value.annotations['opentelekomcloud.cattle.io/authUrl']           = decoded.authUrl;
+      this.value.annotations['opentelekomcloud.cattle.io/username'] = decoded.username;
+      this.value.annotations['opentelekomcloud.cattle.io/domainName'] = decoded.domainName;
+      this.value.annotations['opentelekomcloud.cattle.io/password'] = decoded.password;
+      this.value.annotations['opentelekomcloud.cattle.io/region'] = decoded.region;
+      this.value.annotations['opentelekomcloud.cattle.io/authUrl'] = decoded.authUrl;
 
       if (this.project) {
         const project = this.projects?.find((p) => p.name === this.project);
@@ -331,10 +332,10 @@ export default {
     <div class="row">
       <div class="col span-4">
         <LabeledSelect
-            v-model:value="region"
-            label-key="driver.opentelekomcloud.auth.fields.region"
-            :options="regionOptions"
-            :searchable="false"
+          v-model:value="region"
+          label-key="driver.opentelekomcloud.auth.fields.region"
+          :options="regionOptions"
+          :searchable="false"
         />
       </div>
       <div class="col span-8">
@@ -380,12 +381,12 @@ export default {
     <div class="row mt-20">
       <div class="col span-6">
         <LabeledInput
-            :value="value.decodedData.password"
-            label-key="driver.opentelekomcloud.auth.fields.password"
-            placeholder-key="driver.opentelekomcloud.auth.placeholders.password"
-            type="password"
-            :mode="mode"
-            @input="onPasswordInput"
+          :value="value.decodedData.password"
+          label-key="driver.opentelekomcloud.auth.fields.password"
+          placeholder-key="driver.opentelekomcloud.auth.placeholders.password"
+          type="password"
+          :mode="mode"
+          @input="onPasswordInput"
         />
       </div>
     </div>
@@ -440,10 +441,10 @@ export default {
     >
       <div class="col span-6">
         <LabeledSelect
-            v-model:value="project"
-            label-key="driver.opentelekomcloud.auth.fields.projectName"
-            :options="projectOptions"
-            :searchable="false"
+          v-model:value="project"
+          label-key="driver.opentelekomcloud.auth.fields.projectName"
+          :options="projectOptions"
+          :searchable="false"
         />
       </div>
     </div>
