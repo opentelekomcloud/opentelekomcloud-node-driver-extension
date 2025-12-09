@@ -1,0 +1,20 @@
+{
+  "name": "opentelekomcloud",
+  "description": "OpenTelekomCloud node driver extension plugin",
+  "version": "1.0.0",
+  "private": false,
+  "icon": "https://raw.githubusercontent.com/opentelekomcloud/opentelekomcloud-node-driver-extension/main/pkg/opentelekomcloud/assets/icon-opentelekomcloud.svg",
+  "rancher": true,
+  "engines": {
+    "node": ">=16"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/cli-plugin-typescript": "~5.0.0"
+  },
+  "files": [
+    "**/*"
+  ],
+  "main": "opentelekomcloud-1.0.0.umd.min.js"
+}

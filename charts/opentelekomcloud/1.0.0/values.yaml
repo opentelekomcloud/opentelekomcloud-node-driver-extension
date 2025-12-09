@@ -1,0 +1,14 @@
+nameOverride: ""
+fullnameOverride: ""
+plugin:
+  enabled: true
+  versionOverride: ""
+  endpoint: >-
+    https://raw.githubusercontent.com/opentelekomcloud/opentelekomcloud-node-driver-extension/gh-pages/extensions/opentelekomcloud/1.0.0
+  compressedEndpoint: >-
+    https://raw.githubusercontent.com/opentelekomcloud/opentelekomcloud-node-driver-extension/gh-pages/extensions/opentelekomcloud/1.0.0.tgz
+  noCache: false
+  noAuth: false
+  metadata:
+    catalog.cattle.io/rancher-version: ">= 2.10.0"
+    catalog.cattle.io/ui-extensions-version: ">= 3.0.0 < 4.0.0"

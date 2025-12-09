@@ -1,0 +1,14 @@
+plugin/img/icon-opentelekomcloud.bd232a2c.svg
+plugin/opentelekomcloud-1.0.0.umd.min.119.js
+plugin/opentelekomcloud-1.0.0.umd.min.119.js.map
+plugin/opentelekomcloud-1.0.0.umd.min.37.js
+plugin/opentelekomcloud-1.0.0.umd.min.37.js.map
+plugin/opentelekomcloud-1.0.0.umd.min.594.js
+plugin/opentelekomcloud-1.0.0.umd.min.594.js.map
+plugin/opentelekomcloud-1.0.0.umd.min.cloud-credential.js
+plugin/opentelekomcloud-1.0.0.umd.min.cloud-credential.js.map
+plugin/opentelekomcloud-1.0.0.umd.min.js
+plugin/opentelekomcloud-1.0.0.umd.min.js.map
+plugin/opentelekomcloud-1.0.0.umd.min.machine-config.js
+plugin/opentelekomcloud-1.0.0.umd.min.machine-config.js.map
+plugin/package.json
