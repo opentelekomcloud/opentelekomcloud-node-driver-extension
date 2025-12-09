@@ -82,16 +82,14 @@ export class OpenTelekomCloud {
       // If projectName is set, scope to project
       data.auth.scope = {
         project: {
-          name:   this.projectName,
+          name: this.projectName,
           // projectDomainName is optional for OTC; if set, use it
           ...(this.projectDomainName ? { domain: { name: this.projectDomainName } } : {})
         }
       };
     } else {
       // Otherwise scope to domain
-      data.auth.scope = {
-        domain: { name: this.domainName }
-      };
+      data.auth.scope = { domain: { name: this.domainName } };
     }
 
     const headers = { Accept: 'application/json' };
@@ -149,7 +147,7 @@ export class OpenTelekomCloud {
       }
 
       this.regionsFromCatalog = this.regionsFromCatalog.map((id) => {
-        return { id }
+        return { id };
       });
 
       return res;
@@ -188,6 +186,7 @@ export class OpenTelekomCloud {
   public async getSubnets(value: any, vpcId: string, initial?: string) {
     // Optionally remember the last VPC ID used
     this.vpcId = vpcId;
+
     return await this.getVpcOptions(
       value,
       `/subnets?vpc_id=${ encodeURIComponent(vpcId) }`,
@@ -326,6 +325,7 @@ export class OpenTelekomCloud {
 
   public async makeComputeRequest(api: string) {
     const endpoint = this.endpoints['compute']?.replace(/^https?:\/\//, '');
+
     if (!endpoint) {
       return { error: 'No compute endpoint discovered from catalog' };
     }
@@ -342,9 +342,9 @@ export class OpenTelekomCloud {
       return await this.$dispatch('management/request', {
         url,
         headers,
-        method: 'GET',
+        method:               'GET',
         redirectUnauthorized: false,
-      }, {root: true});
+      }, { root: true });
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
@@ -354,18 +354,14 @@ export class OpenTelekomCloud {
   }
 
   private async makeVpcRequest(api: string, method = 'GET', body?: any) {
-    console.log('[OTC] makeVpcRequest: api =', api, 'endpoints =', this.endpoints);
-
     const endpoint = this.endpoints['vpc']?.replace(/^https?:\/\//, '');
-    console.log('[OTC] makeVpcRequest: ep =', endpoint);
 
     if (!endpoint) {
-      console.error('[OTC] No VPC endpoint for region', this.region, 'catalog:', this.catalog);
-      return null;    }
+      return null;
+    }
 
     const baseUrl = `/meta/proxy/${ endpoint }`;
     const url = `${ baseUrl }${ api }`;
-    console.log('[OTC] makeVpcRequest: url =', url);
 
     const headers: any = {
       Accept:         'application/json',
@@ -376,9 +372,9 @@ export class OpenTelekomCloud {
       return await this.$dispatch('management/request', {
         url,
         headers,
-        method: method,
+        method,
         redirectUnauthorized: false,
-      }, {root: true});
+      }, { root: true });
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
@@ -389,6 +385,7 @@ export class OpenTelekomCloud {
 
   private async makeImageRequest(api: string, queryString = '') {
     const endpoint = this.endpoints['image']?.replace(/^https?:\/\//, '');
+
     if (!endpoint) {
       return { error: 'No image (glance/IMS) endpoint discovered from catalog' };
     }
@@ -405,9 +402,9 @@ export class OpenTelekomCloud {
       return await this.$dispatch('management/request', {
         url,
         headers,
-        method: 'GET',
+        method:               'GET',
         redirectUnauthorized: false,
-      }, {root: true});
+      }, { root: true });
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);

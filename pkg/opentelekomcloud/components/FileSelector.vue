@@ -150,20 +150,20 @@ export default {
 
 <template>
   <button
-      v-if="!isView"
-      :disabled="disabled"
-      type="button"
-      class="file-selector btn"
-      @click="selectFile"
+    v-if="!isView"
+    :disabled="disabled"
+    type="button"
+    class="file-selector btn"
+    @click="selectFile"
   >
     <span>{{ label }}</span>
     <input
-        ref="uploader"
-        type="file"
-        class="hide"
-        :multiple="multiple"
-        :webkitdirectory="directory"
-        @change="fileChange"
+      ref="uploader"
+      type="file"
+      class="hide"
+      :multiple="multiple"
+      :webkitdirectory="directory"
+      @change="fileChange"
     >
   </button>
 </template>

@@ -7,6 +7,7 @@ export default function(plugin: IPlugin) {
   importTypes(plugin);
 
   const metadata = require('./package.json');
+
   plugin.register('image', 'providers/opentelekomcloud.svg', require('./assets/icon-opentelekomcloud.svg'));
 
   // Attach metadata and tell Rancher which registered image to use as the extension icon
