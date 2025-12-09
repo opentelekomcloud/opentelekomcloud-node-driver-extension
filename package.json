@@ -1,0 +1,32 @@
+{
+  "name": "opentelekomcloud",
+  "version": "1.0.0",
+  "private": false,
+  "description": "Rancher UI Extension for the OpenTelekomCloud node driver (RKE2)",
+  "rancher": {
+    "annotations": {
+      "catalog.cattle.io/display-name": "OpenTelekomCloud Node Driver",
+      "catalog.cattle.io/ui-extensions-version": ">= 1.1.0"
+    }
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@rancher/shell": "^3.0.7"
+  },
+  "resolutions": {
+    "@types/node": "~20.10.0",
+    "@types/lodash": "4.17.5"
+  },
+  "scripts": {
+    "dev": "NODE_ENV=dev ./node_modules/.bin/vue-cli-service serve",
+    "build": "./node_modules/.bin/vue-cli-service build",
+    "clean": "./node_modules/@rancher/shell/scripts/clean",
+    "build-pkg": "./node_modules/@rancher/shell/scripts/build-pkg.sh",
+    "serve-pkgs": "./node_modules/@rancher/shell/scripts/serve-pkgs",
+    "publish-pkgs": "./node_modules/@rancher/shell/scripts/extension/publish",
+    "parse-tag-name": "./node_modules/@rancher/shell/scripts/extension/parse-tag-name"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}
